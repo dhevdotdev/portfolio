@@ -1,0 +1,15 @@
+{
+  "items": [
+    {
+      "type": "publication",
+      "title": "GBiL: A hybrid GRU and BiLSTM model with PSO for a robust VANET IDS",
+      "venue": "EURASIP Journal on Wireless Communications and Networking (SpringerOpen, 2024)",
+      "url": "https://jwcn-eurasipjournals.springeropen.com/articles/10.1186/s13638-024-02397-3"
+    },
+    {
+      "type": "award",
+      "title": "Bravo \u2014 Best Employee of the Quarter (x2)",
+      "venue": "Vegrow Tech and AI team"
+    }
+  ]
+}
