@@ -1,0 +1,8 @@
+{
+  "items": [
+    { "label": "GitHub", "url": "https://github.com/dhevdotdev", "icon": "github" },
+    { "label": "LinkedIn", "url": "https://www.linkedin.com/in/dhev-s/", "icon": "linkedin" },
+    { "label": "Trakt", "url": "https://trakt.tv/users/dynamic_dave_", "icon": "trakt" },
+    { "label": "Anilist", "url": "https://anilist.co/user/dynamicDave/", "icon": "anilist" }
+  ]
+}

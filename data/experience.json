@@ -1,0 +1,20 @@
+{
+  "items": [
+    {
+      "company": "Vegrow",
+      "location": "Chennai",
+      "role": "SDE Fullstack, Engineering Excellence Team",
+      "start": "Jun 2024",
+      "end": "Present",
+      "description": "Developing scalable internal platforms and managing cloud infrastructure on AWS. Own CI/CD pipelines with self-hosted EKS runners, observability with Sentry and OpenTelemetry, and security compliance across the engineering org."
+    },
+    {
+      "company": "Samsung R&D (SRI-B)",
+      "location": "Bangalore",
+      "role": "Magpie Intern",
+      "start": "Jun 2023",
+      "end": "Aug 2023",
+      "description": "Built a React-based configuration system for Voice Intelligence testing, creating 8+ reusable components that reduced manual configuration effort by 60%."
+    }
+  ]
+}

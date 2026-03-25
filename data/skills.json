@@ -1,0 +1,12 @@
+{
+  "groups": [
+    { "label": "primary", "items": ["Java", "Spring Boot"] },
+    { "label": "languages", "items": ["TypeScript", "JavaScript", "Go", "Python"] },
+    { "label": "frontend", "items": ["React"] },
+    { "label": "cloud", "items": ["AWS", "Docker", "Kubernetes", "Terraform"] },
+    { "label": "cicd", "items": ["GitHub Actions", "Jenkins"] },
+    { "label": "data", "items": ["PostgreSQL", "MongoDB", "Kafka"] },
+    { "label": "observability", "items": ["Sentry", "OpenTelemetry"] },
+    { "label": "exploring", "items": ["Android"] }
+  ]
+}
