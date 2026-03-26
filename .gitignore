@@ -4,3 +4,6 @@ out/
 package-lock.json
 *.tsbuildinfo
 next-env.d.ts
+
+ssh/portfolio-ssh
+ssh/.ssh/
