@@ -31,4 +31,4 @@ Shared JSON files in `data/` power both frontends.
 ## Live
 
 - Web: [dhev.dev](https://dhev.dev)
-- SSH: `ssh dhev.dev -p 2222` *(coming soon)*
+- SSH: `ssh ssh.dhev.dev`
