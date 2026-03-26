@@ -33,10 +33,11 @@ jobs:
           COMMON_OPTS="-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/deploy_key"
 
           scp $COMMON_OPTS -P 2222 ssh/portfolio-ssh "${USER}@${HOST}:~/portfolio-ssh"
-          scp $COMMON_OPTS -P 2222 -r data "${USER}@${HOST}:~/data"
+          scp $COMMON_OPTS -P 2222 data/*.json "${USER}@${HOST}:~/data/"
 
           ssh $COMMON_OPTS -p 2222 "${USER}@${HOST}" << 'EOF'
+            sudo systemctl stop portfolio-ssh
             sudo cp ~/portfolio-ssh /opt/portfolio/portfolio-ssh
-            sudo cp ~/data/* /opt/portfolio/data/
-            sudo systemctl restart portfolio-ssh
+            sudo cp ~/data/*.json /opt/portfolio/data/
+            sudo systemctl start portfolio-ssh
           EOF
