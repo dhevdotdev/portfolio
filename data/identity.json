@@ -3,7 +3,8 @@
   "handle": "dhev",
   "domain": "dhev.dev",
   "location": "Chennai, India",
-  "email": "dhev3518@gmail.com",
+  "email": "hi@dhev.dev",
   "title": "Java backend developer",
-  "tagline": "Backend systems, infrastructure, and the occasional 2am dotfile rewrite."
+  "tagline": "Backend systems, infrastructure, and the occasional 2am dotfile rewrite.",
+  "resume_url": "https://dhev.dev/Resume.pdf"
 }
