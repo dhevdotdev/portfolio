@@ -60,7 +60,13 @@ export function Hero({ identity }: { identity: Identity }) {
         <CursorBlink />
       </h1>
 
-      <p className="text-xl text-mauve mb-4">{identity.title}</p>
+      <p className="text-xl text-mauve mb-2">{identity.title}</p>
+
+      <p className="text-sm text-subtext1 mb-4 font-mono">
+        <span>{identity.location}</span>
+        <span className="text-surface2 mx-2">·</span>
+        <a href={`mailto:${identity.email}`} className="text-subtext1 hover:text-peach transition-colors">{identity.email}</a>
+      </p>
 
       <p className="text-[1rem] text-subtext0 max-w-lg leading-relaxed sm:hidden">
         {identity.tagline}
