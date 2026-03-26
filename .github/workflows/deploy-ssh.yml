@@ -1,0 +1,42 @@
+name: Deploy SSH Portfolio
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "ssh/**"
+      - "data/**"
+      - ".github/workflows/deploy-ssh.yml"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: ssh/go.mod
+
+      - name: Build
+        run: cd ssh && GOOS=linux GOARCH=amd64 go build -o portfolio-ssh .
+
+      - name: Deploy
+        env:
+          SSH_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+          HOST: ${{ secrets.SSH_HOST }}
+          USER: ${{ secrets.SSH_USER }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          SSH_OPTS="-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/deploy_key -p 2222"
+
+          scp $SSH_OPTS ssh/portfolio-ssh "${USER}@${HOST}:~/portfolio-ssh"
+          scp $SSH_OPTS -r data "${USER}@${HOST}:~/data"
+
+          ssh $SSH_OPTS "${USER}@${HOST}" << 'EOF'
+            sudo cp ~/portfolio-ssh /opt/portfolio/portfolio-ssh
+            sudo cp ~/data/* /opt/portfolio/data/
+            sudo systemctl restart portfolio-ssh
+          EOF
