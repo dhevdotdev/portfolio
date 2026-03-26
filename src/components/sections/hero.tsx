@@ -13,7 +13,6 @@ const ASCII_NAME = `      _  _                     _
 export function Hero({ identity }: { identity: Identity }) {
   const fullText = identity.name;
   const [displayed, setDisplayed] = useState("");
-  const [done, setDone] = useState(false);
 
   useEffect(() => {
     let i = 0;
@@ -24,7 +23,6 @@ export function Hero({ identity }: { identity: Identity }) {
         setDisplayed(fullText.slice(0, i));
         if (i >= fullText.length) {
           clearInterval(interval);
-          setDone(true);
         }
       }, 60);
     }, 2000);
