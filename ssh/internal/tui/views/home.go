@@ -26,8 +26,9 @@ func Home(p *data.Portfolio, _ int, s theme.Styles) string {
 	b.WriteString(s.R.NewStyle().Foreground(theme.Mauve).Render(p.Identity.Title) + "\n")
 	b.WriteString(s.R.NewStyle().Foreground(theme.Subtext0).Render(p.Identity.Tagline) + "\n\n")
 	b.WriteString(s.Subtle.Render(p.Identity.Location + "  ·  " + p.Identity.Email))
-	b.WriteString("\n")
-	b.WriteString(s.R.NewStyle().Foreground(theme.Overlay0).Render("also at " + p.Identity.Domain))
+	b.WriteString("\n\n")
+	b.WriteString(s.Subtle.Render("also at "))
+	b.WriteString(s.Link.Render("https://" + p.Identity.Domain))
 
 	return b.String()
 }
