@@ -5,6 +5,7 @@ import { NAV_ITEMS } from "@/lib/constants";
 
 export function Header() {
   const [active, setActive] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -35,9 +36,10 @@ export function Header() {
         >
           dhev.dev
         </a>
-        <ul className="flex gap-3 sm:gap-4 text-xs overflow-x-auto scrollbar-none">
+
+        <ul className="hidden sm:flex gap-4 text-xs">
           {NAV_ITEMS.map((item) => (
-            <li key={item.label} className="shrink-0">
+            <li key={item.label}>
               <a
                 href={item.href}
                 className={`transition-colors ${
@@ -51,7 +53,39 @@ export function Header() {
             </li>
           ))}
         </ul>
+
+        <button
+          type="button"
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="sm:hidden text-overlay0 hover:text-subtext1 transition-colors text-sm"
+          aria-label="Toggle menu"
+        >
+          {menuOpen ? "[x]" : "[=]"}
+        </button>
       </nav>
+
+      {menuOpen && (
+        <div className="sm:hidden border-t border-surface0 bg-base/95 backdrop-blur-md">
+          <ul className="max-w-3xl mx-auto px-6 py-3 flex flex-col gap-2 text-sm">
+            {NAV_ITEMS.map((item) => (
+              <li key={item.label}>
+                <a
+                  href={item.href}
+                  onClick={() => setMenuOpen(false)}
+                  className={`block py-1 transition-colors ${
+                    active === item.href.slice(1)
+                      ? "text-peach"
+                      : "text-overlay0 hover:text-subtext1"
+                  }`}
+                >
+                  <span className="text-surface2 mr-2">~$</span>
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </header>
   );
 }
