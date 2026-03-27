@@ -6,7 +6,7 @@ export function Resume() {
       <SectionHeader command="open resume.pdf" id="resume" />
       <div className="flex flex-col sm:flex-row gap-3">
         <a
-          href="/Resume.pdf"
+          href="/resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-4 py-2 text-sm border border-surface1 text-subtext1 rounded-md hover:border-peach hover:text-peach transition-colors"
@@ -16,7 +16,7 @@ export function Resume() {
           <span className="text-overlay0">{"]"}</span>
         </a>
         <a
-          href="/Resume.pdf"
+          href="/resume.pdf"
           download
           className="inline-flex items-center gap-2 px-4 py-2 text-sm border border-surface1 text-subtext1 rounded-md hover:border-peach hover:text-peach transition-colors"
         >
