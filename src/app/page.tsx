@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import {
   getIdentity,
   getAbout,
@@ -22,8 +21,6 @@ import { Skills } from "@/components/sections/skills";
 import { LinksSection } from "@/components/sections/links-section";
 import { Resume } from "@/components/sections/resume";
 import { GithubActivity } from "@/components/sections/github-activity";
-import { FeaturedProjects } from "@/components/sections/featured-projects";
-import { FeaturedBlog } from "@/components/sections/featured-blog";
 
 export default function Home() {
   const identity = getIdentity();
@@ -69,18 +66,9 @@ export default function Home() {
         </SectionWrapper>
 
         <SectionWrapper>
-          <Suspense fallback={<p className="text-sm text-overlay0">fetching repos...</p>}>
-            <GithubActivity />
-          </Suspense>
+          <GithubActivity />
         </SectionWrapper>
 
-        <SectionWrapper>
-          <FeaturedProjects />
-        </SectionWrapper>
-
-        <SectionWrapper>
-          <FeaturedBlog />
-        </SectionWrapper>
       </main>
       <Footer />
     </>

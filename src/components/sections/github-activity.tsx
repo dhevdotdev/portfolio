@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { SectionHeader } from "@/components/ui/section-header";
 
 interface Repo {
@@ -21,32 +24,42 @@ const LANG_COLORS: Record<string, string> = {
   HCL: "text-lavender",
 };
 
-async function getRepos(): Promise<Repo[]> {
-  try {
-    const res = await fetch(
-      "https://api.github.com/users/dhevdotdev/repos?sort=pushed&per_page=30&type=owner",
-      { next: { revalidate: 86400 } }
-    );
-    if (!res.ok) return [];
-    const repos: Repo[] = await res.json();
-    return repos.filter((r) => !r.fork).slice(0, 6);
-  } catch {
-    return [];
-  }
-}
+export function GithubActivity() {
+  const [repos, setRepos] = useState<Repo[]>([]);
+  const [status, setStatus] = useState<"loading" | "error" | "done">("loading");
 
-export async function GithubActivity() {
-  const repos = await getRepos();
+  useEffect(() => {
+    const controller = new AbortController();
+    const blacklist = ["dhevdotdev", "portfolio"];
+
+    fetch("https://api.github.com/users/dhevdotdev/repos?sort=pushed&per_page=30&type=owner", {
+      signal: controller.signal,
+    })
+      .then((r) => (r.ok ? r.json() : Promise.reject()))
+      .then((data: Repo[]) => {
+        setRepos(data.filter((r) => !r.fork && !blacklist.includes(r.name)));
+        setStatus("done");
+      })
+      .catch((e) => {
+        if (e?.name !== "AbortError") setStatus("error");
+      });
+
+    return () => controller.abort();
+  }, []);
 
   return (
     <div>
-      <SectionHeader command="gh repo list --limit 6" id="github" />
-      {repos.length === 0 ? (
+      <SectionHeader command="gh repo list" id="github" />
+      {status === "loading" && (
+        <p className="text-sm text-overlay0">fetching repos...</p>
+      )}
+      {status === "error" && (
         <p className="text-overlay0 italic">
           <span className="text-surface2">{"// "}</span>
           unable to fetch repos
         </p>
-      ) : (
+      )}
+      {status === "done" && (
         <div className="grid sm:grid-cols-2 gap-3">
           {repos.map((repo) => (
             <a
@@ -62,9 +75,7 @@ export async function GithubActivity() {
                 </span>
                 <div className="flex items-center gap-3 text-sm">
                   {repo.stargazers_count > 0 && (
-                    <span className="text-yellow">
-                      * {repo.stargazers_count}
-                    </span>
+                    <span className="text-yellow">* {repo.stargazers_count}</span>
                   )}
                   {repo.language && (
                     <span className={LANG_COLORS[repo.language] || "text-overlay0"}>
